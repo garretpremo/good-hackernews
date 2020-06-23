@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  font-size: 14px;
+}
+
+.app-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 0 10%;
+  align-items: center;
+
+  &.loading {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
+  .app-page {
+    width: 100%;
+    max-width: calc(100% - 2rem);
+    padding: 0 1rem;
+  }
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

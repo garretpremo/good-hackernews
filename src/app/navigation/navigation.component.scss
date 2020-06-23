@@ -1,0 +1,15 @@
+app-navigation {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+
+  a.mat-button {
+    border-radius: 0;
+    font-size: 1.15em;
+    padding: .25rem 2rem;
+  }
+}
+
+a.active .mat-button-focus-overlay {
+  opacity: .06;
+}

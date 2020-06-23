@@ -1,0 +1,70 @@
+:host {
+  display: flex;
+  padding: .7em;
+  width: 100%;
+  cursor: pointer;
+
+  .story-link {
+    display: flex;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+.mat-card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.number {
+  flex-basis: 50px;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-info {
+  flex: 1;
+  flex-flow: row wrap;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em;
+}
+
+.comments {
+  align-self: center;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .title a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .host {
+    margin-left: .5em;
+  }
+}
+
+h3, h4 {
+  margin: 0;
+}
+
+main {
+  a {
+    margin-left: .25em;
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  .time-since {
+    margin-left: .25em;
+  }
+}

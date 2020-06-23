@@ -1,0 +1,20 @@
+<a class="story-link" [href]="story?.url">
+  <mat-card [class.mat-elevation-z2]="!hovering" [class.mat-elevation-z7]="hovering">
+    <h3 class="number">{{ index + 1 }}</h3>
+    <section class="story-info">
+      <header>
+        <h3 class="title">{{ story?.title }} <span>{{ story?.url | url }}</span></h3>
+      </header>
+      <main>
+        <span class="score">{{ story?.score }} points by</span>
+        <a [routerLink]="['/user', story?.by ]" class="user">{{ story?.by }}</a>
+        <span class="time-since" [matTooltip]="story?.time | date: 'medium'">{{ story?.time | timeSince }}</span>
+      </main>
+    </section>
+    <section class="comments">
+      <button type="button" mat-mini-fab (click)="goToComments($event)" matTooltip="View Comments">
+        <mat-icon>comments</mat-icon>
+      </button>
+    </section>
+  </mat-card>
+</a>
