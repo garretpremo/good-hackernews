@@ -14,6 +14,14 @@
   &.loading {
     justify-content: center;
   }
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #494949;
+  }
 }
 
 @media screen and (max-device-width:800px), screen and (max-width:800px) {
@@ -23,7 +31,6 @@
     padding: 0 1rem;
   }
 }
-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
