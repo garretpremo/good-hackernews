@@ -4,7 +4,7 @@ import { Story } from '../../../models/story.model';
 @Component({
   selector: 'story-list-story',
   templateUrl: './story-list-story.component.html',
-  styleUrls: ['./story-list-story.component.scss']
+  styleUrls: ['./story-list-story.component.scss', './story-info.scss']
 })
 export class StoryListStoryComponent implements OnInit {
 

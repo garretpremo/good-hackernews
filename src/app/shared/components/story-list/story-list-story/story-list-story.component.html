@@ -1,4 +1,15 @@
-<a class="story-link" [href]="story?.url">
+<ng-container *ngIf="story.url else localStory">
+  <a class="story-link" [href]="story.url">
+    <ng-container *ngTemplateOutlet="storyListStory"></ng-container>
+  </a>
+</ng-container>
+<ng-template #localStory>
+  <a class="story-link" [routerLink]="['/story', story.id ]">
+    <ng-container *ngTemplateOutlet="storyListStory"></ng-container>
+  </a>
+</ng-template>
+
+<ng-template #storyListStory>
   <mat-card [class.mat-elevation-z2]="!hovering" [class.mat-elevation-z7]="hovering">
     <h3 class="number">{{ index + 1 }}</h3>
     <section class="story-info">
@@ -17,4 +28,4 @@
       </button>
     </section>
   </mat-card>
-</a>
+</ng-template>

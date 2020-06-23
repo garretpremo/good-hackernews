@@ -14,7 +14,6 @@
 .mat-card {
   display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 
 .number {
@@ -23,48 +22,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
-.story-info {
-  flex: 1;
-  flex-flow: row wrap;
-  display: flex;
-  flex-direction: column;
-  padding: 0 1em;
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
+  .number {
+    flex-basis: 25px;
+  }
 }
 
 .comments {
   align-self: center;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  .title a {
-    color: white;
-    text-decoration: none;
-  }
-
-  .host {
-    margin-left: .5em;
-  }
-}
-
-h3, h4 {
-  margin: 0;
-}
-
-main {
-  a {
-    margin-left: .25em;
-    &:hover {
-      color: inherit;
-    }
-  }
-
-  .time-since {
-    margin-left: .25em;
-  }
 }

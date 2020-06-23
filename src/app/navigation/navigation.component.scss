@@ -13,3 +13,9 @@ app-navigation {
 a.active .mat-button-focus-overlay {
   opacity: .06;
 }
+
+@media (hover: none) {
+  a.active.mat-button:hover .mat-button-focus-overlay {
+    opacity: .06;
+  }
+}

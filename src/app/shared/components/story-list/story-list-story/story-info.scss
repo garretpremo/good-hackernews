@@ -1,0 +1,34 @@
+.mat-card {
+  width: 100%;
+
+  .story-info {
+    flex: 1;
+    flex-flow: row wrap;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em;
+
+    header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .title {
+        margin: 0;
+      }
+    }
+
+    main {
+      a {
+        margin-left: .25em;
+        &:hover {
+          color: inherit;
+        }
+      }
+
+      .time-since {
+        margin-left: .25em;
+      }
+    }
+  }
+}

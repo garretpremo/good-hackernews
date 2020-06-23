@@ -6,3 +6,9 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
+  :host {
+    flex-direction: column-reverse;
+  }
+}
