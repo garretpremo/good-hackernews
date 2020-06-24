@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { TopStoriesService } from './top-stories.service';
 import { StoriesPageComponent } from '../stories-page.component';
 
@@ -8,7 +9,10 @@ import { StoriesPageComponent } from '../stories-page.component';
   styleUrls: ['./top-stories.component.scss']
 })
 export class TopStoriesComponent extends StoriesPageComponent {
-  constructor(private topStoriesService: TopStoriesService) {
-    super(topStoriesService);
+  protected readonly title: string = 'Top Hacker News';
+
+  constructor(titleService: Title,
+              private topStoriesService: TopStoriesService) {
+    super(titleService, topStoriesService);
   }
 }

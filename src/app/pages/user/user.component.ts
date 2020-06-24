@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from '../../shared/models/user.model';
 import { PageComponent } from '../page.component';
 import { tap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'user',
@@ -16,9 +17,10 @@ export class UserComponent extends PageComponent implements OnInit {
   private readonly userSubject = new BehaviorSubject<User>(null);
   readonly user$ = this.userSubject.asObservable();
 
-  constructor(private route: ActivatedRoute,
+  constructor(titleService: Title,
+              private route: ActivatedRoute,
               private userApiService: UserApiService) {
-    super();
+    super(titleService);
   }
 
   ngOnInit() {
@@ -26,7 +28,10 @@ export class UserComponent extends PageComponent implements OnInit {
     if (params.has('id')) {
       this.userApiService.fetchUser(params.get('id'))
         .pipe(tap(() => this.loading = false))
-        .subscribe(user => this.user = user);
+        .subscribe(user => {
+          this.user = user;
+          this.setTitle(`Profile: ${user.id}`);
+        });
     }
   }
 
@@ -37,5 +42,4 @@ export class UserComponent extends PageComponent implements OnInit {
   set user(user: User) {
     this.userSubject.next(user);
   }
-
 }
