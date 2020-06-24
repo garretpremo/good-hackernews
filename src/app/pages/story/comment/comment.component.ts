@@ -15,20 +15,18 @@ export class CommentComponent implements OnInit {
   @HostBinding('class.show-comments')
   showComments = true;
 
-  commentsHiddenText = '1 more';
+  commentsHiddenText = '+';
 
   constructor() {
   }
 
   ngOnInit() {
     if (this.comment?.kids) {
-      this.commentsHiddenText = `${1 + this.comment.kids.length} more`;
+      this.commentsHiddenText = `${1 + this.comment.subComments} more`;
     }
   }
 
   toggleShowComments() {
-    this.showComments = !this.showComments;
+    this.comment.open = !this.comment.open;
   }
-
-
 }

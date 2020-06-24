@@ -25,6 +25,13 @@ export class CommentApiService {
             return this.getComments(comment.kids)
               .pipe(map(subComments => {
                 comment.children = subComments;
+
+                subComments.forEach(subComment => {
+                  if (subComment.by) {
+                    comment.subComments += subComment.subComments + 1;
+                  }
+                });
+
                 return comment;
               }));
           } else {
