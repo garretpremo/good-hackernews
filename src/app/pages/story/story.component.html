@@ -27,6 +27,9 @@
           <ng-container *ngFor="let comment of comments; let i = index">
             <comment *ngIf="comment.by" [comment]="comment" [root]="true" [odd]="i % 2 === 0"></comment>
           </ng-container>
+          <ng-container *ngIf="comments.length === 0">
+            <div class="no-comments-found">No comments found.</div>
+          </ng-container>
         </main>
         <ng-template #commentsLoading>
           <div class="loading">

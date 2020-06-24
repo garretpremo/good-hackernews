@@ -1,4 +1,4 @@
-import { Component, Host, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Host, HostBinding, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { StoryComment } from '../story-comment.model';
 
 @Component({
@@ -37,7 +37,8 @@ export class CommentComponent implements OnInit {
     }
   }
 
-  toggleShowComments() {
+  @HostListener('click', ['$event']) toggleShowComment(event) {
+    event.stopPropagation();
     this.comment.open = !this.comment.open;
   }
 }

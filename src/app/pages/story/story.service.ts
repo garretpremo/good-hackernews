@@ -23,7 +23,11 @@ export class StoryService {
   }
 
   fetchComments() {
-    this.commentApiService.getComments(this.story.kids).subscribe(comments => this.comments = comments);
+    if (this.story?.kids?.length > 0) {
+      this.commentApiService.getComments(this.story.kids).subscribe(comments => this.comments = comments);
+    } else {
+      this.comments = [];
+    }
   }
 
   get story(): Story {

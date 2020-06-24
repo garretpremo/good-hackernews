@@ -52,6 +52,16 @@ story {
         flex-direction: column;
         align-items: center;
       }
+
+      .no-comments-found {
+        padding-left: 2rem;
+      }
     }
+  }
+}
+
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
+  story {
+    padding: 0 1rem;
   }
 }
