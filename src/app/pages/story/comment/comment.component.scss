@@ -1,0 +1,49 @@
+comment {
+  display: block;
+  padding: 1rem 0 0 1.25rem;
+
+  header {
+    display: flex;
+    color: #bbb;
+
+    .user-link {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .date {
+      margin-left: .25rem;
+    }
+
+    .comment-toggle {
+      margin-left: .25rem;
+      cursor: pointer;
+      font-family: Verdana, Geneva, sans-serif;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .comment-text {
+    p {
+      margin-bottom: .4rem;
+    }
+
+    a {
+      color: #cdcdcd;
+    }
+  }
+}
+
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
+  comment {
+    padding-left: .5rem;
+  }
+}

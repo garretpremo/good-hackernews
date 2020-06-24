@@ -6,6 +6,7 @@ import { StoryService } from './story.service';
 import { filter } from 'rxjs/operators';
 import { Story } from '../../shared/models/story.model';
 import { Title } from '@angular/platform-browser';
+import { StoryComment } from './story-comment.model';
 
 @Component({
   selector: 'story',
@@ -14,10 +15,12 @@ import { Title } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
+  appPage = false;
 
   routeSubscription: Subscription;
   storySubscription: Subscription;
   story$: Observable<Story>;
+  comments$: Observable<StoryComment[]>;
 
   constructor(titleService: Title,
               private route: ActivatedRoute,
@@ -27,9 +30,11 @@ export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.story$ = this.storyService.story$;
+    this.comments$ = this.storyService.comments$;
 
     this.routeSubscription = this.route.params.subscribe(params => {
       this.storyService.story = null;
+      this.storyService.comments = null;
       this.loading = true;
       this.storyService.fetchStory(params.id);
     });
@@ -39,6 +44,7 @@ export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
       .subscribe(story => {
         this.loading = false;
         this.setTitle(story.title);
+        this.storyService.fetchComments();
       });
   }
 

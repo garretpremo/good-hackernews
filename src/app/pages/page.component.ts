@@ -2,7 +2,7 @@ import { HostBinding } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 export abstract class PageComponent {
-  @HostBinding('class.app-page') protected readonly appPage = true;
+  @HostBinding('class.app-page') protected appPage = true;
   @HostBinding('class.loading') protected loading = true;
 
   protected title: string = null;

@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Story } from '../../../models/story.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'story-list-story',
@@ -16,7 +17,7 @@ export class StoryListStoryComponent implements OnInit {
 
   hovering = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,5 +33,6 @@ export class StoryListStoryComponent implements OnInit {
   goToComments(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this.router.navigate(['/story', this.story.id]);
   }
 }

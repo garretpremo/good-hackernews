@@ -16,6 +16,27 @@
       </mat-card-content>
     </mat-card>
   </section>
+
+  <section class="comments-wrapper">
+    <mat-card>
+      <mat-card-header>
+        <h3>Comments</h3>
+      </mat-card-header>
+      <mat-card-content>
+        <main *ngIf="comments$ | async as comments else commentsLoading">
+          <ng-container *ngFor="let comment of comments">
+            <comment *ngIf="comment.by" [comment]="comment"></comment>
+          </ng-container>
+        </main>
+        <ng-template #commentsLoading>
+          <div class="loading">
+            <mat-spinner></mat-spinner>
+            <div>Loading Comments...</div>
+          </div>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </section>
 </ng-container>
 <ng-template #loadingStory>
   <mat-spinner></mat-spinner>
