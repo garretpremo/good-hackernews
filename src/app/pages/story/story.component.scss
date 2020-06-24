@@ -40,8 +40,12 @@ story {
     }
 
     .mat-card-content {
-      padding: 0 1.5rem 0 .75rem;
+      padding: 0;
       overflow: auto;
+
+      &.loading-comments {
+        overflow: hidden;
+      }
 
       .loading {
         display: flex;

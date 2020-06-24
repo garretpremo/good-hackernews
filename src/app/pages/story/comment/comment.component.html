@@ -1,14 +1,14 @@
 <header>
   <a class="user-link" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
-  <span class="date" [matTooltip]="comment.time | date: 'MMM dd yyyy'">{{ comment.time | timeSince }}</span>
+  <span class="date" [matTooltip]="comment.time | date: 'medium'">{{ comment.time | timeSince }}</span>
   <div class="comment-toggle" (click)="toggleShowComments()">
     [{{ comment.open ? '-' : commentsHiddenText }}]
   </div>
 </header>
 <ng-container *ngIf="comment.open else commentsHidden">
-  <div class="comment-text" [innerHTML]="comment.text"></div>
-  <ng-container *ngFor="let subComment of comment.children">
-    <comment *ngIf="subComment.by" [comment]="subComment"></comment>
+  <div [ngStyle]="{'margin-bottom': comment.kids ? '.75em' : '0' }" class="comment-text" [innerHTML]="comment.text"></div>
+  <ng-container *ngFor="let subComment of comment.children; let i = index">
+    <comment *ngIf="subComment.by" [comment]="subComment" [root]="false" [odd]="i % 2 === 0" d></comment>
   </ng-container>
 </ng-container>
 <ng-template #commentsHidden></ng-template>

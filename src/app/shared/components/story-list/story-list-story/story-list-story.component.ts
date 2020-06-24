@@ -29,10 +29,4 @@ export class StoryListStoryComponent implements OnInit {
   @HostListener('mouseleave') onMouseLeave() {
     this.hovering = false;
   }
-
-  goToComments(event: MouseEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.router.navigate(['/story', this.story.id]);
-  }
 }

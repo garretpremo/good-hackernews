@@ -1,6 +1,15 @@
 comment {
   display: block;
-  padding: 1rem 0 0 1.25rem;
+  padding: .75rem 0 .75rem 1rem;
+  background: rgba(0, 0, 0, .13);
+
+  &.odd {
+    background: rgba(0, 0, 0, .09);
+  }
+
+  &.root {
+    padding-left: 2rem;
+  }
 
   header {
     display: flex;
@@ -45,5 +54,9 @@ comment {
 @media screen and (max-device-width:800px), screen and (max-width:800px) {
   comment {
     padding-left: .5rem;
+
+    &.root {
+      padding-left: 1rem;
+    }
   }
 }

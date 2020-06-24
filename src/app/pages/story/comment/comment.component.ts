@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Host, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { StoryComment } from '../story-comment.model';
 
 @Component({
@@ -14,6 +14,17 @@ export class CommentComponent implements OnInit {
 
   @HostBinding('class.show-comments')
   showComments = true;
+
+  @HostBinding('class.root')
+  @Input()
+  root = true;
+
+  @HostBinding('class.odd')
+  @Input()
+  odd: boolean;
+
+  @Input()
+  depth: number;
 
   commentsHiddenText = '+';
 

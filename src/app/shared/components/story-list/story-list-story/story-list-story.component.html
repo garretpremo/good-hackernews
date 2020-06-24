@@ -23,9 +23,9 @@
       </main>
     </section>
     <section class="comments">
-      <button type="button" mat-mini-fab (click)="goToComments($event)" matTooltip="View Comments">
+      <a type="button" mat-mini-fab [routerLink]="['/story', story.id ]" matTooltip="View Comments">
         <mat-icon>comments</mat-icon>
-      </button>
+      </a>
     </section>
   </mat-card>
 </ng-template>
