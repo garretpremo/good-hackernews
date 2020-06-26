@@ -1,7 +1,9 @@
 <header>
   <a class="user-link" [routerLink]="['/user', comment.by]">{{ comment.by }}</a>
   <span class="date" [matTooltip]="comment.time | date: 'medium'">{{ comment.time | timeSince }}</span>
-  <div class="comment-toggle">[{{ comment.open ? '-' : commentsHiddenText }}]</div>
+  <div class="comment-toggle" (click)="toggleShowComments($event)" (touchend)="$event.stopPropagation()">
+    [{{ comment.open ? '-' : commentsHiddenText }}]
+  </div>
 </header>
 <ng-container *ngIf="comment.open else commentsHidden">
   <div [ngStyle]="{'margin-bottom': comment.kids ? '.75em' : '0' }" class="comment-text" [innerHTML]="comment.text"></div>

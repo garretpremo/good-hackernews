@@ -14,6 +14,9 @@ export class StoryService {
   private readonly commentsSubject = new BehaviorSubject<StoryComment[]>(null);
   readonly comments$ = this.commentsSubject.asObservable();
 
+  private readonly touchStartEventSubject = new BehaviorSubject<TouchEvent>(null);
+  readonly touchStartEvent$ = this.touchStartEventSubject.asObservable();
+
   constructor(private newsApiService: NewsApiService,
               private commentApiService: CommentApiService) {
   }
@@ -44,5 +47,13 @@ export class StoryService {
 
   set comments(comments: StoryComment[]) {
     this.commentsSubject.next(comments);
+  }
+
+  get touchStartEvent(): TouchEvent {
+    return this.touchStartEventSubject.getValue();
+  }
+
+  set touchStartEvent(touchStartEvent: TouchEvent) {
+    this.touchStartEventSubject.next(touchStartEvent);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { PageComponent } from '../page.component';
@@ -51,5 +51,17 @@ export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
     this.storySubscription.unsubscribe();
+  }
+
+  @HostListener('touchstart', ['$event']) onTouchStart(event: TouchEvent) {
+    this.storyService.touchStartEvent = event;
+  }
+
+  @HostListener('touchmove') onTouchMove() {
+    this.storyService.touchStartEvent = null;
+  }
+
+  @HostListener('touchend') onTouchEnd() {
+    this.storyService.touchStartEvent = null;
   }
 }

@@ -3,7 +3,7 @@ import { ItemType } from './item-type.enum';
 export class Story {
   type = ItemType.STORY;
 
-  userColor: number;
+  // userColor: number;
 
   constructor(
     public id: number,
