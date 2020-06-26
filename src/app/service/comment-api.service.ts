@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { combineLatest, Observable, of } from 'rxjs';
 import { StoryComment } from '../pages/story/story-comment.model';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CommentApiService {
@@ -20,23 +20,17 @@ export class CommentApiService {
     return this.http.get<StoryComment>(`${this.url}/item/${ id }.json`)
       .pipe(
         map(comment => StoryComment.fromApi(comment)),
-        mergeMap(comment => {
+        tap(comment => {
           if (comment?.kids) {
-            return this.getComments(comment.kids)
-              .pipe(map(subComments => {
-                comment.children = subComments;
-
-                subComments.forEach(subComment => {
-                  if (subComment.by) {
-                    comment.subComments += subComment.subComments + 1;
-                  }
-                });
-
-                return comment;
-              }));
+            this.getComments(comment.kids).subscribe(subComments => {
+              subComments.forEach(subComment => comment.subCommentCount += subComment.by ? (subComment.subCommentCount + 1) : 0);
+              comment.subComments = subComments;
+            });
           } else {
-            return of(comment);
+            comment.subComments = [];
           }
+
+          return of(comment);
         })
       );
   }

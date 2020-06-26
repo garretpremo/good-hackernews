@@ -11,11 +11,13 @@ import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     StoryListComponent,
     StoryListStoryComponent,
+    LoadingSpinnerComponent,
     TimeSincePipe,
     UrlPipe,
   ],
@@ -33,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     HttpClientModule,
     StoryListComponent,
+    LoadingSpinnerComponent,
     TimeSincePipe,
     UrlPipe,
   ]

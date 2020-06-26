@@ -5,10 +5,14 @@
     [{{ comment.open ? '-' : commentsHiddenText }}]
   </div>
 </header>
-<ng-container *ngIf="comment.open else commentsHidden">
+<ng-container *ngIf="comment.open">
   <div [ngStyle]="{'margin-bottom': comment.kids ? '.75em' : '0' }" class="comment-text" [innerHTML]="comment.text"></div>
-  <ng-container *ngFor="let subComment of comment.children; let i = index">
-    <comment *ngIf="subComment.by" [comment]="subComment" [root]="false" [odd]="i % 2 === 0" d></comment>
+  <ng-container *ngIf="comment.subComments$ | async as subComments else loadingSubComments">
+    <ng-container *ngFor="let subComment of subComments; let i = index">
+      <comment *ngIf="subComment.by" [comment]="subComment" [root]="false" [odd]="i % 2 === 0" d></comment>
+    </ng-container>
   </ng-container>
+  <ng-template #loadingSubComments>
+    <loading-spinner>Loading comments...</loading-spinner>
+  </ng-template>
 </ng-container>
-<ng-template #commentsHidden></ng-template>

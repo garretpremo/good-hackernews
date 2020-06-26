@@ -40,7 +40,7 @@ export class CommentComponent implements OnInit {
     this.id = this.comment.id;
 
     if (this.comment?.kids) {
-      this.commentsHiddenText = `${1 + this.comment.subComments} more`;
+      this.commentsHiddenText = `${1 + this.comment.subCommentCount} more`;
     }
   }
 
