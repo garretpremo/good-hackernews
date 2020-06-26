@@ -1,15 +1,17 @@
 {
   "name": "good-hackernews",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build-prod": "ng build --prod",
+    "build-deploy": "npm run build-prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc --properties es2018 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2018 browser module main --first-only --create-ivy-entry-points",
+    "postbuild-deploy": "firebase deploy --only hosting"
   },
   "private": true,
   "dependencies": {
