@@ -1,4 +1,4 @@
-import { Component, ElementRef, Host, HostBinding, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { StoryComment } from '../story-comment.model';
 import { StoryService } from '../story.service';
 
@@ -6,7 +6,8 @@ import { StoryService } from '../story.service';
   selector: 'comment',
   templateUrl: './comment.component.html',
   styleUrls: [ './comment.component.scss' ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommentComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class CommentComponent implements OnInit {
 
   @HostBinding('class.root')
   @Input()
-  root = true;
+  root = false;
 
   @HostBinding('class.odd')
   @Input()

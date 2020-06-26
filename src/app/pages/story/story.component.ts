@@ -1,24 +1,25 @@
-import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PageComponent } from '../page.component';
 import { StoryService } from './story.service';
 import { filter } from 'rxjs/operators';
 import { Story } from '../../shared/models/story.model';
 import { Title } from '@angular/platform-browser';
 import { StoryComment } from './story-comment.model';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'story',
   templateUrl: './story.component.html',
   styleUrls: [ './story.component.scss', '../../shared/components/story-list/story-list-story/story-info.scss' ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
   appPage = false;
 
-  routeSubscription: Subscription;
-  storySubscription: Subscription;
+  private readonly subscriptions = new SubSink();
   story$: Observable<Story>;
   comments$: Observable<StoryComment[]>;
 
@@ -32,14 +33,14 @@ export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
     this.story$ = this.storyService.story$;
     this.comments$ = this.storyService.comments$;
 
-    this.routeSubscription = this.route.params.subscribe(params => {
+    this.subscriptions.sink = this.route.params.subscribe(params => {
       this.storyService.story = null;
       this.storyService.comments = null;
       this.loading = true;
       this.storyService.fetchStory(params.id);
     });
 
-    this.storySubscription = this.storyService.story$
+    this.subscriptions.sink = this.storyService.story$
       .pipe(filter(story => story !== null))
       .subscribe(story => {
         this.loading = false;
@@ -49,8 +50,7 @@ export class StoryComponent extends PageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
-    this.storySubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   @HostListener('touchstart', ['$event']) onTouchStart(event: TouchEvent) {

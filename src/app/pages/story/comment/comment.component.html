@@ -9,7 +9,7 @@
   <div [ngStyle]="{'margin-bottom': comment.kids ? '.75em' : '0' }" class="comment-text" [innerHTML]="comment.text"></div>
   <ng-container *ngIf="comment.subComments$ | async as subComments else loadingSubComments">
     <ng-container *ngFor="let subComment of subComments; let i = index">
-      <comment *ngIf="subComment.by" [comment]="subComment" [root]="false" [odd]="i % 2 === 0" d></comment>
+      <comment *ngIf="subComment.by" [comment]="subComment" [odd]="i % 2 === 0" d></comment>
     </ng-container>
   </ng-container>
   <ng-template #loadingSubComments>
