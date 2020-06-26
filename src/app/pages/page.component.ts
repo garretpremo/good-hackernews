@@ -1,6 +1,8 @@
-import { HostBinding } from '@angular/core';
+import { HostBinding, Directive } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class PageComponent {
   @HostBinding('class.app-page') protected appPage = true;
   @HostBinding('class.loading') protected loading = true;
