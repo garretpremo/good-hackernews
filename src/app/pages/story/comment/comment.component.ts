@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { StoryComment } from '../story-comment.model';
 import { StoryService } from '../story.service';
+import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'comment',
@@ -31,7 +33,8 @@ export class CommentComponent implements OnInit {
   @Input()
   depth: number;
 
-  commentsHiddenText = '+';
+  private readonly commentsHiddenTextSubject = new BehaviorSubject<string>('+');
+  readonly commentsHiddenText$ = this.commentsHiddenTextSubject.asObservable().pipe(distinctUntilChanged());
 
   constructor(private storyService: StoryService,
               private elementRef: ElementRef) {
@@ -39,10 +42,6 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.comment.id;
-
-    if (this.comment?.kids) {
-      this.commentsHiddenText = `${1 + this.comment.subCommentCount} more`;
-    }
   }
 
   @HostListener('touchend', ['$event']) onTap(event) {
@@ -59,6 +58,24 @@ export class CommentComponent implements OnInit {
       event.stopPropagation();
     }
 
+    if (this.comment.open) {
+      this.setCommentsHiddenText();
+    }
+
     this.comment.open = !this.comment.open;
+  }
+
+  setCommentsHiddenText() {
+    if (this.comment?.kids) {
+      this.commentsHiddenText = `${1 + this.comment.subCommentCount} more`;
+    }
+  }
+
+  get commentsHiddenText(): string {
+    return this.commentsHiddenTextSubject.getValue();
+  }
+
+  set commentsHiddenText(commentsHiddenText: string) {
+    this.commentsHiddenTextSubject.next(commentsHiddenText);
   }
 }
