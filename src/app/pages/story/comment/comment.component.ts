@@ -71,11 +71,7 @@ export class CommentComponent implements OnInit {
     }
   }
 
-  get commentsHiddenText(): string {
-    return this.commentsHiddenTextSubject.getValue();
-  }
-
-  set commentsHiddenText(commentsHiddenText: string) {
+  private set commentsHiddenText(commentsHiddenText: string) {
     this.commentsHiddenTextSubject.next(commentsHiddenText);
   }
 }
