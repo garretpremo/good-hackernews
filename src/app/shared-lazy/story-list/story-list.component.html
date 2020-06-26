@@ -1,0 +1,6 @@
+<ng-container *ngIf="stories$ | async as stories else loadingStories">
+  <story-list-story *ngFor="let story of stories; let index = index" [story]="story" [index]="index"></story-list-story>
+</ng-container>
+<ng-template #loadingStories>
+  <loading-spinner [diameter]="100">Loading Stories...</loading-spinner>
+</ng-template>

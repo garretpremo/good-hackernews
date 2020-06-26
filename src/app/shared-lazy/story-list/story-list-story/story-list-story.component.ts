@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Story } from '../../../models/story.model';
+import { Story } from '../../../shared/models/story.model';
 import { Router } from '@angular/router';
 
 @Component({

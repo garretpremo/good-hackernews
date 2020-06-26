@@ -1,7 +1,0 @@
-<ng-container *ngIf="stories$ | async as stories else loadingNews">
-  <story-list-story *ngFor="let story of stories; let index = index" [story]="story" [index]="index"></story-list-story>
-</ng-container>
-<ng-template #loadingNews>
-  <mat-spinner></mat-spinner>
-  <div>Loading News...</div>
-</ng-template>

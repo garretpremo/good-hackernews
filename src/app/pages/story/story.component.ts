@@ -12,7 +12,7 @@ import { SubSink } from 'subsink';
 @Component({
   selector: 'story',
   templateUrl: './story.component.html',
-  styleUrls: [ './story.component.scss', '../../shared/components/story-list/story-list-story/story-info.scss' ],
+  styleUrls: [ './story.component.scss', '../../shared-lazy/story-list/story-list-story/story-info.scss' ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Story } from '../../models/story.model';
+import { Story } from '../../shared/models/story.model';
 
 @Component({
   selector: 'story-list',

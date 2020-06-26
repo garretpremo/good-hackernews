@@ -32,16 +32,12 @@
           </ng-container>
         </main>
         <ng-template #commentsLoading>
-          <div class="loading">
-            <mat-spinner></mat-spinner>
-            <div>Loading Comments...</div>
-          </div>
+          <loading-spinner>Loading Comments...</loading-spinner>
         </ng-template>
       </mat-card-content>
     </mat-card>
   </section>
 </ng-container>
 <ng-template #loadingStory>
-  <mat-spinner></mat-spinner>
-  <div>Loading Story...</div>
+  <loading-spinner [diameter]="100">Loading Story</loading-spinner>
 </ng-template>
