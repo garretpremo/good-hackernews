@@ -1,7 +1,7 @@
 // @ts-ignore
 import { ItemType } from '../shared/item-type.enum';
 
-export interface Comment {
+export interface AppComment {
   type: ItemType;
   by: string;
   id: number;
@@ -10,4 +10,6 @@ export interface Comment {
   text: string;
   time: number;
   deleted?: boolean;
+  subComments?: AppComment[];
+  subCommentCount?: number;
 }

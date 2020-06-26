@@ -1,3 +1,5 @@
+import { AppComment } from '../comment/comment.model';
+
 export interface Story {
     id: number;
     by: string;
@@ -8,4 +10,5 @@ export interface Story {
     kids?: number[];
     text?: string;
     url?: string;
+    comments?: AppComment[];
 }

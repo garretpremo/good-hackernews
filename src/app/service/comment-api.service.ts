@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { combineLatest, Observable, of } from 'rxjs';
 import { StoryComment } from '../pages/story/story-comment.model';
-import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CommentApiService {
