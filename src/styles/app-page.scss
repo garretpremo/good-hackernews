@@ -1,0 +1,28 @@
+.app-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 0 10%;
+  align-items: center;
+
+  &.loading {
+    justify-content: center;
+  }
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #494949;
+  }
+}
+
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
+  .app-page {
+    width: 100%;
+    max-width: calc(100% - 2rem);
+    padding: 0 1rem;
+  }
+}

@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+$app-primary: mat-palette($mat-purple);
+$app-secondary: mat-palette($mat-green);
+
+:root {
+  font-size: 14px;
+  background: #222;
+  color: white;
+
+  --primary: mat-color($app-primary);
+  --secondary: mat-color($app-secondary);
+
+  --blue: #498afb;
+  --purple: mat-color($app-primary);
+  --green: mat-color($app-secondary);
+}
