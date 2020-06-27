@@ -1,45 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserApiService } from '../../service/user-api.service';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../../shared/models/user.model';
 import { PageComponent } from '../page.component';
-import { tap } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
+import { UserService } from './user.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent extends PageComponent implements OnInit {
+export class UserComponent extends PageComponent implements OnInit, OnDestroy {
 
-  private readonly userSubject = new BehaviorSubject<User>(null);
-  readonly user$ = this.userSubject.asObservable();
+  user$: Observable<User>;
+
+  subscriptions = new SubSink();
 
   constructor(titleService: Title,
               private route: ActivatedRoute,
-              private userApiService: UserApiService) {
+              private userService: UserService) {
     super(titleService);
   }
 
   ngOnInit() {
+    this.user$ = this.userService.user$;
+
     const params = this.route.snapshot.paramMap;
     if (params.has('id')) {
-      this.userApiService.fetchUser(params.get('id'))
-        .pipe(tap(() => this.loading = false))
-        .subscribe(user => {
-          this.user = user;
-          this.setTitle(`Profile: ${user.id}`);
-        });
+      this.userService.fetchUser(params.get('id'));
     }
+
+    this.subscriptions.sink = this.userService.user$
+      .pipe(
+        tap(() => this.loading = true),
+        filter(user => user !== null))
+      .subscribe(() => this.loading = false);
   }
 
-  get user(): User {
-    return this.userSubject.getValue();
-  }
-
-  set user(user: User) {
-    this.userSubject.next(user);
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+    this.userService.user = null;
   }
 }

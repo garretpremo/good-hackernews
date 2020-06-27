@@ -1,12 +1,27 @@
 <section class="user-wrapper">
   <mat-card *ngIf="user$ | async as user else loadingUser">
-    <mat-card-header>
-      <mat-card-title>{{ user.id }}</mat-card-title>
-      <mat-card-subtitle>created: {{ (user.created * 1000) | date: 'MMM dd, yyyy' }}</mat-card-subtitle>
-      <mat-card-subtitle>karma: {{ user.karma | number }}</mat-card-subtitle>
-    </mat-card-header>
+    <header>
+      <h2>{{ user.id }}</h2>
+    </header>
+    <main>
+      <span>created:</span>
+      <span><span [matTooltip]="user.created | timeSince">{{ (user.created) | date: 'MMM dd, yyyy' }}</span></span>
+
+      <span>karma:</span>
+      <span>{{ user.karma | number }}</span>
+
+      <ng-container *ngIf="user.about">
+        <span>about:</span>
+        <div class="about">
+          <div [innerHTML]="user.about"></div>
+          <a [routerLink]="[ 'submissions' ]">Submissions</a>
+        </div>
+      </ng-container>
+    </main>
   </mat-card>
 </section>
+
+<router-outlet></router-outlet>
 
 <ng-template #loadingUser>
   <mat-spinner></mat-spinner>

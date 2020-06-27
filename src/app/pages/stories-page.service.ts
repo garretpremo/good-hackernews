@@ -1,7 +1,7 @@
 import { Story } from '../shared/models/story.model';
 import { BehaviorSubject } from 'rxjs';
 
-export class StoriesPageService {
+export abstract class StoriesPageService {
   private readonly storiesSubject = new BehaviorSubject<Story[]>(null);
   readonly stories$ = this.storiesSubject.asObservable();
 

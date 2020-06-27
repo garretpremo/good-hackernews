@@ -12,5 +12,27 @@
   .mat-card {
     width: 100%;
     display: flex;
+    flex-direction: column;
+  }
+
+  header, main {
+    padding: 0 1rem;
+  }
+
+  header h2 {
+    margin-bottom: .5rem;
+  }
+
+  main {
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 6rem auto;
+    grid-row-gap: .5rem;
+  }
+
+  .about {
+    div, a:not(:last-child) {
+      margin-bottom: .5rem;
+    }
   }
 }

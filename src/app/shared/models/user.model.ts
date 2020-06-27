@@ -3,12 +3,18 @@ export class User {
               public delay: number,
               public created: number,
               public karma: number,
-              public submitted: number[]) {
+              public submitted: number[],
+              public about?: string) {
   }
 
   public static from(user: User): User {
-    const { id, delay, created, karma, submitted } = user;
+    const { id, delay, karma, submitted, about } = user;
+    let created = user.created;
 
-    return new User(id, delay, created, karma, submitted);
+    if (created) {
+      created = created * 1000;
+    }
+
+    return new User(id, delay, created, karma, submitted, about);
   }
 }
