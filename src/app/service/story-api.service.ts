@@ -5,7 +5,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { Story } from '../shared/models/story.model';
 
 @Injectable({ providedIn: 'root' })
-export class NewsApiService {
+export class StoryApiService {
 
   private pageSize = 30;
   private page = 1;

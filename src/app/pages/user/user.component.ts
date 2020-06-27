@@ -37,7 +37,10 @@ export class UserComponent extends PageComponent implements OnInit, OnDestroy {
       .pipe(
         tap(() => this.loading = true),
         filter(user => user !== null))
-      .subscribe(() => this.loading = false);
+      .subscribe(user => {
+        this.loading = false;
+        this.setTitle(`Profile: ${user.id}`);
+      });
   }
 
   ngOnDestroy() {

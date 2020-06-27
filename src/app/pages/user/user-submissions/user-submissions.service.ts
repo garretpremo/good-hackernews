@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
 import { filter, switchMap } from 'rxjs/operators';
-import { NewsApiService } from '../../../service/news-api.service';
+import { StoryApiService } from '../../../service/story-api.service';
 import { StoriesPageService } from '../../stories-page.service';
 
 @Injectable()
 export class UserSubmissionsService extends StoriesPageService {
 
   constructor(private userService: UserService,
-              private newsApiService: NewsApiService) {
+              private newsApiService: StoryApiService) {
     super();
 
     this.userService.user$

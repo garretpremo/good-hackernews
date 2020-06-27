@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Story } from '../../shared/models/story.model';
 import { BehaviorSubject } from 'rxjs';
-import { NewsApiService } from '../../service/news-api.service';
+import { StoryApiService } from '../../service/story-api.service';
 import { StoryComment } from './story-comment.model';
 import { CommentApiService } from '../../service/comment-api.service';
 
@@ -17,7 +17,7 @@ export class StoryService {
   private readonly touchStartEventSubject = new BehaviorSubject<TouchEvent>(null);
   readonly touchStartEvent$ = this.touchStartEventSubject.asObservable();
 
-  constructor(private newsApiService: NewsApiService,
+  constructor(private newsApiService: StoryApiService,
               private commentApiService: CommentApiService) {
   }
 
