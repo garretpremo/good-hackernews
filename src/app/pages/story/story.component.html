@@ -1,21 +1,32 @@
 <ng-container *ngIf="story$ | async as story else loadingStory">
-  <section class="story-wrapper">
-    <mat-card>
-      <section class="story-info">
-        <header>
-          <h3 class="title">{{ story?.title }}</h3>
-        </header>
-        <main>
-          <span class="score">{{ story?.score }} points by</span>
-          <a [routerLink]="['/user', story?.by ]" class="user">{{ story?.by }}</a>
-          <span class="time-since" [matTooltip]="story?.time | date: 'medium'">{{ story?.time | timeSince }}</span>
-        </main>
-      </section>
-      <mat-card-content>
-        <p class="story-content" [innerHTML]="story.text"></p>
-      </mat-card-content>
-    </mat-card>
-  </section>
+  <ng-container *ngIf="story.url else localStory">
+    <a class="story-link" [href]="story.url">
+      <ng-container *ngTemplateOutlet="activeStory"></ng-container>
+    </a>
+  </ng-container>
+  <ng-template #localStory>
+    <ng-container *ngTemplateOutlet="activeStory"></ng-container>
+  </ng-template>
+
+  <ng-template #activeStory>
+    <section class="story-wrapper">
+      <mat-card>
+        <section class="story-info">
+          <header>
+            <h3 class="title">{{ story?.title }}</h3>
+          </header>
+          <main>
+            <span class="score">{{ story?.score }} points by</span>
+            <a [routerLink]="['/user', story?.by ]" class="user">{{ story?.by }}</a>
+            <span class="time-since" [matTooltip]="story?.time | date: 'medium'">{{ story?.time | timeSince }}</span>
+          </main>
+        </section>
+        <mat-card-content *ngIf="story.text">
+          <p class="story-content" [innerHTML]="story.text"></p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  </ng-template>
 
   <section class="comments-wrapper">
     <mat-card>

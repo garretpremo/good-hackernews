@@ -6,10 +6,20 @@ story {
   padding: 0 10%;
   align-items: center;
 
+  .story-link {
+    display: flex;
+    text-decoration: none;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
   section.story-wrapper, section.comments-wrapper {
     display: flex;
     width: 100%;
-    padding: 1rem 0;
+  }
+
+  section.comments-wrapper {
+    padding-bottom: 1rem;
   }
 
   .mat-card .story-content {

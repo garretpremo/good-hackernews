@@ -19,6 +19,11 @@ export class Story {
 
   public static fromApi(story: Story) {
     const { id, by, descendants, score, title, kids, text, url } = story;
+
+    if (!id) {
+      return new Story(null, null, null, null, null, null, [], null, null);
+    }
+
     let time = story.time;
 
     if (time) {
