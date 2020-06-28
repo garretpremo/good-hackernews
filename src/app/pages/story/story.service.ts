@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Story } from '../../shared/models/story.model';
 import { BehaviorSubject } from 'rxjs';
 import { StoryApiService } from '../../service/story-api.service';
-import { StoryComment } from './story-comment.model';
+import { StoryComment } from '../../shared/models/story-comment.model';
 import { CommentApiService } from '../../service/comment-api.service';
 
 @Injectable()

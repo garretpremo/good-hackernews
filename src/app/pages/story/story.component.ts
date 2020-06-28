@@ -6,7 +6,7 @@ import { StoryService } from './story.service';
 import { filter } from 'rxjs/operators';
 import { Story } from '../../shared/models/story.model';
 import { Title } from '@angular/platform-browser';
-import { StoryComment } from './story-comment.model';
+import { StoryComment } from '../../shared/models/story-comment.model';
 import { SubSink } from 'subsink';
 
 @Component({

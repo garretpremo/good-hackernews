@@ -1,33 +1,38 @@
-import { ItemType } from '../../shared/models/item-type.enum';
+import { ItemType } from './item-type.enum';
 import { BehaviorSubject } from 'rxjs';
+import { Item } from './item.model';
 
-export class StoryComment {
+export class StoryComment extends Item {
   readonly type = ItemType.COMMENT;
 
   private readonly subCommentsSubject = new BehaviorSubject<StoryComment[]>(null);
   readonly subComments$ = this.subCommentsSubject.asObservable();
 
   children?: StoryComment[];
-
   open = true;
   deleted: boolean;
-  constructor(public by: string,
-              public id: number,
-              public kids: number[],
+
+  constructor(id: number,
+              by: string,
+              time: number,
+              kids: number[],
               public parent: number,
               public text: string,
-              public time: number,
               public subCommentCount = 0) {
+    super(id, by, time, kids);
   }
 
   public static fromApi(storyComment: StoryComment): StoryComment {
     if (storyComment === null || storyComment.deleted) {
-      return new StoryComment(null, null, null, null, '', 0);
+      return new StoryComment(null, null, null, [], null, '');
     }
 
-    const { by, id, kids, parent, text, time, children } = storyComment;
+    const { by, id, parent, text, children } = storyComment;
 
-    return new StoryComment(by, id, kids, parent, text, time * 1000);
+    const time = storyComment.time ? storyComment.time * 1000 : storyComment.time;
+    const kids = storyComment.kids ?? [];
+
+    return new StoryComment(id, by, time, kids, parent, text);
   }
 
   get subComments(): StoryComment[] {

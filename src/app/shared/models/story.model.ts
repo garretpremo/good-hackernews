@@ -1,35 +1,33 @@
 import { ItemType } from './item-type.enum';
+import { Item } from './item.model';
 
-export class Story {
-  type = ItemType.STORY;
+export class Story extends Item {
+  readonly type = ItemType.STORY;
 
   // userColor: number;
 
-  constructor(
-    public id: number,
-    public by: string,
-    public descendants: number,
-    public score: number,
-    public time: number,
-    public title: string,
-    public kids?: number[],
-    public text?: string,
-    public url?: string) {
+  constructor(id: number,
+              by: string,
+              time: number,
+              kids: number[],
+              public descendants: number,
+              public score: number,
+              public title: string,
+              public text?: string,
+              public url?: string) {
+    super(id, by, time, kids);
   }
 
   public static fromApi(story: Story) {
-    const { id, by, descendants, score, title, kids, text, url } = story;
+    const { id, by, descendants, score, title, text, url } = story;
 
     if (!id) {
-      return new Story(null, null, null, null, null, null, [], null, null);
+      return new Story(null, null, null, null, null, null, '', '', null);
     }
 
-    let time = story.time;
+    const time = story.time ? story.time * 1000 : story.time;
+    const kids = story.kids ?? [];
 
-    if (time) {
-      time = time * 1000;
-    }
-
-    return new Story(id, by, descendants, score, time, title, kids, text, url);
+    return new Story(id, by, time, kids, descendants, score, title, text, url);
   }
 }

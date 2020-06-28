@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { combineLatest, Observable, of } from 'rxjs';
-import { StoryComment } from '../pages/story/story-comment.model';
+import { StoryComment } from '../shared/models/story-comment.model';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })

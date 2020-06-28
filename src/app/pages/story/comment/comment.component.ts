@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { StoryComment } from '../story-comment.model';
+import { StoryComment } from '../../../shared/models/story-comment.model';
 import { StoryService } from '../story.service';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';

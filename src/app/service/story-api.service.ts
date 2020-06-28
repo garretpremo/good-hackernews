@@ -3,15 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators';
 import { combineLatest, Observable } from 'rxjs';
 import { Story } from '../shared/models/story.model';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
-export class StoryApiService {
+export class StoryApiService extends ApiService {
 
   private pageSize = 30;
   private page = 1;
-  private readonly url = 'https://hacker-news.firebaseio.com/v0';
 
   constructor(private http: HttpClient) {
+    super();
   }
 
   getTopStories() {
