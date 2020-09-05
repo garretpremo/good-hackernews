@@ -9,7 +9,7 @@ import { ItemType } from '../shared/models/item-type.enum';
 import { StoryComment } from '../shared/models/story-comment.model';
 
 @Injectable({ providedIn: 'root' })
-export class ItemApiService extends ApiService{
+export class ItemApiService extends ApiService {
 
   constructor(private http: HttpClient) {
     super();

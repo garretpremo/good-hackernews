@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
 import { StoryComment } from '../shared/models/story-comment.model';
 import { map, tap } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
-export class CommentApiService {
-
-  private readonly url = 'https://hacker-news.firebaseio.com/v0';
+export class CommentApiService extends ApiService {
 
   constructor(private http: HttpClient) {
+    super();
   }
 
   getComments(ids: number[]): Observable<StoryComment[]> {
