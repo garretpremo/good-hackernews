@@ -12,4 +12,4 @@ before_script:
 testing:
     stage: test
     script:
-        - npm test -- --no-watch --no-progress --disable-gpu --browsers=ChromeHeadlessCI
+        - npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI

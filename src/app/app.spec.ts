@@ -4,4 +4,7 @@ describe('application tests', () => {
         expect(true).toEqual(true);
     });
 
+    it('passes another test', () => {
+        expect(true).toEqual(true);
+    });
 });
