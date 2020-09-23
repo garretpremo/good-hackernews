@@ -1,15 +1,26 @@
 # use alpine to reduce space
-image: node:14.11.0-alpine3.12
+image: alpeware/chrome-headless-trunk
+
+stages:
+    - npm
+    - test
 
 cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
         - .npm/
 
-before_script:
-    - npm ci --cache .npm --prefer-offline
+npm:
+    stage: npm
+    script:
+        - npm ci --cache .npm --prefer-offline
+    cache:
+        paths:
+            - .npm/
 
-testing:
+test:
     stage: test
+    dependencies:
+        - npm
     script:
         - npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
