@@ -1,0 +1,15 @@
+# use alpine to reduce space
+image: node:14.11.0-alpine3.12
+
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+        - .npm/
+
+before_script:
+    - npm ci --cache .npm --prefer-offline
+
+testing:
+    stage: test
+    script:
+        - npm test -- --no-watch --no-progress --disable-gpu --browsers=ChromeHeadlessCI
