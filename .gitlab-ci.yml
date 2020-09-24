@@ -24,3 +24,4 @@ test:
         - npm
     script:
         - npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
