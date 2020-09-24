@@ -2,8 +2,8 @@
 #image: buildkite/puppeteer
 
 stages:
-#    - build-image
     - run-image
+#    - build-image
 #    - test
 
 #cache:
