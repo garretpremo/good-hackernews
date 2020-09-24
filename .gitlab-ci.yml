@@ -1,26 +1,31 @@
-# use alpine to reduce space
-image: buildkite/puppeteer
+
+#image: buildkite/puppeteer
 
 stages:
-    - npm
-    - test
+    - build-image
+#    - test
 
-cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-        - .npm/
+#cache:
+#    key: ${CI_COMMIT_REF_SLUG}
+#    paths:
+#        - .npm/
 
-npm:
-    stage: npm
+build-image:
+    stage: build-image
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
     script:
-        - npm ci --cache .npm --prefer-offline
-    cache:
-        paths:
-            - .npm/
+        - mkdir -p /kaniko/.docker
+        - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+        - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/ci-test/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+#    cache:
+#        paths:
+#            - .npm/
 
-test:
-    stage: test
-    dependencies:
-        - npm
-    script:
-        - npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+#test:
+#    stage: test
+#    dependencies:
+#        - npm
+#    script:
+#        - npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI

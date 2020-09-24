@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ngcc --properties es2018 browser module main --first-only --create-ivy-entry-points",
-    "postbuild-deploy": "firebase deploy --only hosting"
+    "postbuild-deploy": "firebase deploy --only hosting",
+    "build-test-ci-image": "docker build -t garretpremo/goodhackernews-ci-tests -f ./docker/ci-test/Dockerfile ."
   },
   "private": true,
   "dependencies": {
