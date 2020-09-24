@@ -3,6 +3,7 @@
 
 stages:
     - build-image
+    - run-image
 #    - test
 
 #cache:
@@ -19,7 +20,15 @@ build-image:
         - mkdir -p /kaniko/.docker
         - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
         - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/ci-test/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-#    cache:
+
+run-image:
+    stage: run-image
+    image:
+        name: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    dependencies:
+        - build-image
+    script:
+        - echo running tests
 #        paths:
 #            - .npm/
 
