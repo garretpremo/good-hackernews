@@ -25,6 +25,7 @@ run-image:
     stage: run-image
     image:
         name: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    script: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
 #        paths:
 #            - .npm/
